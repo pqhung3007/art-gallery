@@ -1,6 +1,18 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Header from "./components/Header";
+import Gallery from "./pages/Gallery";
+import Slideshow from "./pages/Slideshow";
+
 function App() {
   return (
-    <h1 className="text-3xl font-bold text-rose-700">Welcome to the gallery</h1>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Gallery />} />
+        <Route path="/slideshow" element={<Slideshow />} />
+      </Routes>
+    </Router>
   );
 }
 
