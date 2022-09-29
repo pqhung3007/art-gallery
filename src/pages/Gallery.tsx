@@ -1,7 +1,7 @@
-import React from "react";
+import GalleryGrid from "../components/GalleryGrid";
 
 function Gallery() {
-  return <div>Gallery</div>;
+  return <GalleryGrid />;
 }
 
 export default Gallery;
