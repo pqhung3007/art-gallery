@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import Macy from "macy";
 import data from "../data/data.json";
 import GalleryItem from "./GalleryItem";
@@ -25,11 +24,11 @@ function GalleryGrid() {
   }, []);
 
   return (
-    <div id="gallery-grid">
+    <main id="gallery-grid" className="max-w-7xl mx-auto">
       {data.map((painting) => (
         <GalleryItem key={painting.name} {...painting} />
       ))}
-    </div>
+    </main>
   );
 }
 
