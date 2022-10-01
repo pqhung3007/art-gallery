@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Painting } from "../model/painting";
 
-const GalleryItem: React.FC<Painting> = ({ images, name, artist }) => {
+const GalleryItem = ({ images, name, artist }: Painting) => {
   return (
-    <Link to="/">
+    <Link to="/slideshow">
       <div className="relative overflow-hidden">
         <img
           src={images.thumbnail}
