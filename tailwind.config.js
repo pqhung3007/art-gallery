@@ -7,7 +7,13 @@ module.exports = {
     extend: {
       fontFamily: {
         'serif': ['Libre Baskerville', 'serif']
+      },
+      screens: {
+        'sm': '480px',
+        'md': '768px',
+        'lg': '1100px'
       }
+
     },
   },
   plugins: [],
