@@ -1,19 +1,34 @@
 import { Painting } from "../model/painting";
 import data from "../data/data.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BackButton from "../assets/icon-back-button.svg";
 import NextButton from "../assets/icon-next-button.svg";
 
-type IProp = {
-  painting: Painting;
-};
 const Card = () => {
   const [item, setItem] = useState(data);
   const [value, setValue] = useState(0);
+  const [width, setWidth] = useState(0);
 
   const { name, images, artist, year, description, source } = item[value];
+  const progressBarWidth = {
+    width: width + "%",
+  };
+
+  const movePrev = () => {
+    setValue((cur) => cur - 1);
+  };
+
+  const moveNext = () => {
+    setValue((cur) => cur + 1);
+  };
+
+  useEffect(() => {
+    setWidth(Math.floor((value / item.length) * 100));
+  }, [item, value]);
+
   return (
     <>
+      {/* Main article */}
       <article className="block lg:flex items-center max-w-7xl mx-auto px-6 md:px-20 lg:px-6 pt-8 md:pt-16 font-serif">
         <div className="relative mb-40 w-full">
           <picture>
@@ -53,25 +68,35 @@ const Card = () => {
         </div>
       </article>
 
-      <div className="flex justify-between items-center mt-24 pb-8 max-w-7xl mx-auto px-6 font-serif">
-        <div className="space-y-4">
-          <h3 className="text-lg font-bold mb-2">{name}</h3>
-          <p className="text-xs text-gray-500">{artist.name}</p>
+      {/* Footer */}
+      <div className=" max-w-7xl mx-auto px-6 ">
+        <div className="w-full h-1 bg-slate-100 relative">
+          <span
+            className="block h-full bg-black"
+            style={progressBarWidth}
+          ></span>
         </div>
 
-        <div className="flex space-x-6">
-          <img
-            src={BackButton}
-            alt=""
-            onClick={() => setValue((cur) => cur - 1)}
-            className="cursor-pointer"
-          />
-          <img
-            src={NextButton}
-            alt=""
-            onClick={() => setValue((cur) => cur + 1)}
-            className="cursor-pointer"
-          />
+        <div className="flex justify-between items-center mt-8 pb-8 font-serif">
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold mb-2">{name}</h3>
+            <p className="text-xs text-gray-500">{artist.name}</p>
+          </div>
+
+          <div className="flex space-x-6">
+            <img
+              src={BackButton}
+              alt=""
+              onClick={movePrev}
+              className="cursor-pointer"
+            />
+            <img
+              src={NextButton}
+              alt=""
+              onClick={moveNext}
+              className="cursor-pointer"
+            />
+          </div>
         </div>
       </div>
     </>
