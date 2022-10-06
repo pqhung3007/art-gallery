@@ -3,7 +3,7 @@ import logo from "../assets/logo.svg";
 
 function Header() {
   return (
-    <nav className="flex justify-between items-center h-20 max-w-7xl mx-auto p-4">
+    <nav className="flex justify-between items-center h-20 max-w-7xl mx-auto p-4 shadow-md">
       <Link to="/">
         <img src={logo} alt="logo" className="cursor-pointer" />
       </Link>

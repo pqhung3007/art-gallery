@@ -1,8 +1,9 @@
-import { Painting } from "../model/painting";
 import data from "../data/data.json";
 import { useState, useEffect } from "react";
 import BackButton from "../assets/icon-back-button.svg";
 import NextButton from "../assets/icon-next-button.svg";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../util/animation";
 
 const Card = () => {
   const [item, setItem] = useState(data);
@@ -27,7 +28,7 @@ const Card = () => {
   }, [item, value]);
 
   return (
-    <>
+    <motion.main variants={pageAnimation} initial="hide" animate="show">
       {/* Main article */}
       <article className="block lg:flex items-center max-w-7xl mx-auto px-6 md:px-20 lg:px-6 pt-8 md:pt-16 font-serif">
         <div className="relative mb-40 w-full">
@@ -84,22 +85,24 @@ const Card = () => {
           </div>
 
           <div className="flex space-x-6">
-            <img
+            <motion.img
               src={BackButton}
               alt=""
               onClick={movePrev}
               className="cursor-pointer"
+              whileHover={{ x: -5 }}
             />
-            <img
+            <motion.img
               src={NextButton}
               alt=""
               onClick={moveNext}
               className="cursor-pointer"
+              whileHover={{ x: 5 }}
             />
           </div>
         </div>
       </div>
-    </>
+    </motion.main>
   );
 };
 
