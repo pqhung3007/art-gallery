@@ -6,23 +6,24 @@ import SliderContext from "../context/SliderContext";
 function Footer() {
   const [width, setWidth] = useState(0);
   const { currentIndex, sliders, setCurrentIndex } = useContext(SliderContext);
+  const { name, artist } = sliders[currentIndex];
 
   useEffect(() => {
-    setWidth(Math.floor((currentIndex / sliders.length) * 100));
+    setWidth(Math.round((currentIndex / sliders.length) * 100));
   }, [currentIndex, sliders]);
+
+  console.log(width);
 
   const progressBarWidth = {
     width: width + "%",
   };
 
-  const { name, artist } = sliders[currentIndex];
-
   const movePrev = () => {
-    setCurrentIndex((prevState) => prevState - 1);
+    setCurrentIndex((currentIndex - 1 + sliders.length) % sliders.length);
   };
 
   const moveNext = () => {
-    setCurrentIndex((prevState) => prevState + 1);
+    setCurrentIndex((currentIndex + 1) % sliders.length);
   };
 
   return (
