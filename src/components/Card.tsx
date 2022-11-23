@@ -1,31 +1,33 @@
 import data from "../data/data.json";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import BackButton from "../assets/icon-back-button.svg";
 import NextButton from "../assets/icon-next-button.svg";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../util/animation";
+import SliderContext from "../context/SliderContext";
 
-const Card = () => {
-  const [item, setItem] = useState(data);
-  const [value, setValue] = useState(0);
+function Card() {
   const [width, setWidth] = useState(0);
 
-  const { name, images, artist, year, description, source } = item[value];
+  const { sliders, currentIndex, setCurrentIndex } = useContext(SliderContext);
+
+  const { name, images, artist, year, description, source } =
+    sliders[currentIndex];
   const progressBarWidth = {
     width: width + "%",
   };
 
   const movePrev = () => {
-    setValue((cur) => cur - 1);
+    setCurrentIndex((prevState) => prevState - 1);
   };
 
   const moveNext = () => {
-    setValue((cur) => cur + 1);
+    setCurrentIndex((prevState) => prevState + 1);
   };
 
   useEffect(() => {
-    setWidth(Math.floor((value / item.length) * 100));
-  }, [item, value]);
+    setWidth(Math.floor((currentIndex / sliders.length) * 100));
+  }, [currentIndex, sliders]);
 
   return (
     <motion.main variants={pageAnimation} initial="hide" animate="show">
@@ -104,6 +106,6 @@ const Card = () => {
       </div>
     </motion.main>
   );
-};
+}
 
 export default Card;

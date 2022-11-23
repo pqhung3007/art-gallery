@@ -6,15 +6,15 @@ import Slideshow from "./pages/Slideshow";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <SliderProvider>
+    <SliderProvider>
+      <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Gallery />} />
           <Route path="/slideshow" element={<Slideshow />} />
         </Routes>
-      </SliderProvider>
-    </Router>
+      </Router>
+    </SliderProvider>
   );
 }
 
