@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../util/animation";
 import LightBox from "./LightBox";
@@ -8,6 +8,12 @@ import LightBoxContext from "../context/LightBoxContext";
 function Card() {
   const { sliders, currentIndex } = useContext(SliderContext);
   const { isLightBoxOpen, setIsLightBoxOpen } = useContext(LightBoxContext);
+
+  useEffect(() => {
+    isLightBoxOpen
+      ? (document.body.style.overflowY = "hidden")
+      : (document.body.style.overflowY = "auto");
+  }, [isLightBoxOpen]);
 
   const { name, images, artist, year, description, source } =
     sliders[currentIndex];
@@ -30,7 +36,7 @@ function Card() {
 
           <button
             className="view-btn absolute md:bottom-4 left-4 bg-black/60 p-4 text-white hover:text-black hover:bg-white/60 duration-150 uppercase text-xs tracking-widest"
-            onClick={() => setIsLightBoxOpen((prevState) => !prevState)}
+            onClick={() => setIsLightBoxOpen(true)}
           >
             view image
           </button>

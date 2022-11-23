@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import SliderContext from "../context/SliderContext";
 import LightBoxContext from "../context/LightBoxContext";
 
