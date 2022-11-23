@@ -1,11 +1,16 @@
+import { useContext } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Painting } from "../model/painting";
+import SliderContext from "../context/SliderContext";
 import { captionAnimation } from "../util/animation";
 
-const GalleryItem = ({ images, name, artist }: Painting) => {
+const GalleryItem = ({ id, images, name, artist }: Painting) => {
+  const { setCurrentIndex } = useContext(SliderContext);
+
   return (
-    <Link to="/slideshow">
+    /* use CR since id might be undefined <type> */
+    <Link to="/slideshow" onClick={() => setCurrentIndex(id ? id : 0)}>
       <div className="relative overflow-hidden">
         <img
           src={images.thumbnail}

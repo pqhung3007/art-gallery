@@ -35,8 +35,8 @@ function Gallery() {
         initial="hide"
         animate="show"
       >
-        {sliders.map((painting) => (
-          <GalleryItem key={painting.name} {...painting} />
+        {sliders.map((painting, index) => (
+          <GalleryItem key={painting.name} id={index} {...painting} />
         ))}
       </motion.div>
     </main>
