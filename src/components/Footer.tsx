@@ -1,21 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import BackButton from "../assets/icon-back-button.svg";
 import NextButton from "../assets/icon-next-button.svg";
 import SliderContext from "../context/SliderContext";
 
 function Footer() {
-  const [width, setWidth] = useState(0);
   const { currentIndex, sliders, setCurrentIndex } = useContext(SliderContext);
   const { name, artist } = sliders[currentIndex];
 
-  useEffect(() => {
-    setWidth(Math.round((currentIndex / sliders.length) * 100));
-  }, [currentIndex, sliders]);
-
-  console.log(width);
-
   const progressBarWidth = {
-    width: width + "%",
+    width: Math.round(((currentIndex + 1) / sliders.length) * 100) + "%",
   };
 
   const movePrev = () => {
