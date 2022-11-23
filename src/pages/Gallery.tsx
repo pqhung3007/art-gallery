@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import Macy from "macy";
 import { motion } from "framer-motion";
-import data from "../data/data.json";
 import GalleryItem from "../components/GalleryItem";
 import { pageAnimation } from "../util/animation";
+import SliderContext from "../context/SliderContext";
 
 const macyOptions = {
   container: "#gallery-grid",
@@ -25,6 +25,8 @@ function Gallery() {
     new Macy(macyOptions);
   }, []);
 
+  const { sliders } = useContext(SliderContext);
+
   return (
     <main className="max-w-7xl mx-auto mt-8 px-4">
       <motion.div
@@ -33,7 +35,7 @@ function Gallery() {
         initial="hide"
         animate="show"
       >
-        {data.map((painting) => (
+        {sliders.map((painting) => (
           <GalleryItem key={painting.name} {...painting} />
         ))}
       </motion.div>
