@@ -1,15 +1,12 @@
-import React from "react";
-import data from "../data/data.json";
 import Card from "../components/Card";
+import Footer from "../components/Footer";
 
 function Slideshow() {
   return (
-    <div>
-      {/*  {data.map((painting, index) => (
-        <Card {...painting} key={index} />
-      ))} */}
+    <>
       <Card />
-    </div>
+      <Footer />
+    </>
   );
 }
 

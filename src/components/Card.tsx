@@ -1,33 +1,13 @@
-import data from "../data/data.json";
-import { useState, useEffect, useContext } from "react";
-import BackButton from "../assets/icon-back-button.svg";
-import NextButton from "../assets/icon-next-button.svg";
+import { useContext } from "react";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../util/animation";
 import SliderContext from "../context/SliderContext";
 
 function Card() {
-  const [width, setWidth] = useState(0);
-
-  const { sliders, currentIndex, setCurrentIndex } = useContext(SliderContext);
+  const { sliders, currentIndex } = useContext(SliderContext);
 
   const { name, images, artist, year, description, source } =
     sliders[currentIndex];
-  const progressBarWidth = {
-    width: width + "%",
-  };
-
-  const movePrev = () => {
-    setCurrentIndex((prevState) => prevState - 1);
-  };
-
-  const moveNext = () => {
-    setCurrentIndex((prevState) => prevState + 1);
-  };
-
-  useEffect(() => {
-    setWidth(Math.floor((currentIndex / sliders.length) * 100));
-  }, [currentIndex, sliders]);
 
   return (
     <motion.main variants={pageAnimation} initial="hide" animate="show">
@@ -70,40 +50,6 @@ function Card() {
           </a>
         </div>
       </article>
-
-      {/* Footer */}
-      <div className=" max-w-7xl mx-auto px-6 ">
-        <div className="w-full h-1 bg-slate-100 relative">
-          <span
-            className="block h-full bg-black"
-            style={progressBarWidth}
-          ></span>
-        </div>
-
-        <div className="flex justify-between items-center mt-8 pb-8 font-serif">
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold mb-2">{name}</h3>
-            <p className="text-xs text-gray-500">{artist.name}</p>
-          </div>
-
-          <div className="flex space-x-6">
-            <motion.img
-              src={BackButton}
-              alt=""
-              onClick={movePrev}
-              className="cursor-pointer"
-              whileHover={{ x: -5 }}
-            />
-            <motion.img
-              src={NextButton}
-              alt=""
-              onClick={moveNext}
-              className="cursor-pointer"
-              whileHover={{ x: 5 }}
-            />
-          </div>
-        </div>
-      </div>
     </motion.main>
   );
 }
