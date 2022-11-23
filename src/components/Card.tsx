@@ -25,13 +25,15 @@ function Card() {
             <p className="text-lg text-gray-500">{artist.name}</p>
           </div>
 
-          <div className="">
-            <img
-              src={artist.image}
-              alt=""
-              className="w-20 h-20 md:w-32 md:h-32 absolute -bottom-24 md:bottom-1/2 lg:-bottom-8 md:left-[35rem] lg:left-[80%]"
-            />
-          </div>
+          <button className="view-btn absolute md:bottom-4 left-4 bg-black/60 p-4 text-white uppercase text-xs tracking-widest">
+            view image
+          </button>
+
+          <img
+            src={artist.image}
+            alt=""
+            className="w-20 h-20 md:w-32 md:h-32 absolute -bottom-24 md:bottom-1/2 lg:-bottom-8 md:left-[35rem] lg:left-[80%]"
+          />
         </div>
 
         <div className="relative">
