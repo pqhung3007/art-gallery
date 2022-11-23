@@ -7,7 +7,7 @@ function Header() {
   const { isSlideshowPlaying, setIsSlideshowPlaying } =
     useContext(SliderContext);
   return (
-    <nav className="flex justify-between items-center h-20 max-w-7xl mx-auto p-4 shadow-md">
+    <nav className="flex justify-between items-center h-20 p-4 shadow-md">
       <Link to="/">
         <img src={logo} alt="logo" className="cursor-pointer" />
       </Link>
